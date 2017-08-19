@@ -64,7 +64,7 @@ services:
 #      - codebase:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
     labels:
-      - 'traefik.backend=nginx'
+      - 'traefik.backend=hotairqa_nginx_1'
       - 'traefik.port=80'
       - 'traefik.frontend.rule=Host:qa-hot-air.qa3.tothenew.net'
 
