@@ -6,8 +6,8 @@ services:
     restart: unless-stopped
     command: -c /dev/null --web --docker --logLevel=DEBUG
     networks:
-      - hotair_qa
-      - hotair_dev
+      - hotairqa
+      - hotairdev
     ports:
       - '80:80'
       - '8080:8080'
@@ -17,8 +17,8 @@ services:
 networks:
   project1:
     external: 
-      name: hotair_qa
+      name: hotairqa_default
   project2:
     external:
-      name: hotaire_dev
+      name: hotairedev_default
 
