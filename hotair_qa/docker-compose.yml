@@ -92,10 +92,10 @@ services:
       - nginx
     environment:
       VARNISH_SECRET: secret
-      VARNISH_BACKEND_HOST: hotairqa_nginx_1
+      VARNISH_BACKEND_HOST: nginx
       VARNISH_BACKEND_PORT: 80
     labels:
-      - 'traefik.backend=varnish'
+      - 'traefik.backend=hotairqa_varnish_1'
       - 'traefik.port=6081'
       - 'traefik.frontend.rule=Host:qa-hot-air.qa3.tothenew.net'
 

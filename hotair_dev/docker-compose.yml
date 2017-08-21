@@ -66,7 +66,7 @@ services:
     labels:
       - 'traefik.backend=hotairdev_nginx_1'
       - 'traefik.port=80'
-      - 'traefik.frontend.rule=Host:dev-hot-air.qa3.tothenew.net'
+#      - 'traefik.frontend.rule=Host:dev-hot-air.qa3.tothenew.net'
 
 #  apache:
 #    image: wodby/drupal-apache:2.4-1.0.2
@@ -86,21 +86,21 @@ services:
 #      - 'traefik.port=80'
 #      - 'traefik.frontend.rule=Host:drupal.docker.localhost'
 
-#  varnish:
-#    image: wodby/drupal-varnish:4.1-2.1.2
-#    depends_on:
-#      - nginx
-#    environment:
-#      VARNISH_SECRET: secret
-#      VARNISH_BACKEND_HOST: nginx
-#      VARNISH_BACKEND_PORT: 80
-#    labels:
-#      - 'traefik.backend=varnish'
-#      - 'traefik.port=6081'
-#      - 'traefik.frontend.rule=Host:varnish.drupal.docker.localhost'
+  varnish:
+    image: wodby/drupal-varnish:4.1-2.1.2
+    depends_on:
+      - nginx
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: nginx
+      VARNISH_BACKEND_PORT: 80
+    labels:
+      - 'traefik.backend=hotairdev_varnish_1'
+      - 'traefik.port=6081'
+      - 'traefik.frontend.rule=Host:dev-hot-air.qa3.tothenew.net'
 
-#  redis:
-#    image: wodby/redis:3.2-2.1.2
+  redis:
+    image: wodby/redis:3.2-2.1.2
 
 #  adminer:
 #    image: wodby/adminer:4.3-1.1.0
