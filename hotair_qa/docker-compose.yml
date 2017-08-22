@@ -38,7 +38,7 @@ services:
       # PHP_XDEBUG_REMOTE_CONNECT_BACK: 0         # This is needed to respect remote.host setting below
       # PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"  # You will also need to 'sudo ifconfig lo0 alias 10.254.254.254'
     volumes:
-      - /home/hot-air/code/qa:/var/www/html
+      - ./code:/var/www/html
 # Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
 #      - codebase:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
@@ -59,7 +59,7 @@ services:
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html/web
     volumes:
-      - /home/hot-air/code/dev:/var/www/html
+      - ./code:/var/www/html
 # Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
 #      - codebase:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
