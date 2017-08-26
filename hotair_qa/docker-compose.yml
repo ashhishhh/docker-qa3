@@ -57,7 +57,7 @@ services:
       NGINX_STATIC_CONTENT_OPEN_FILE_CACHE: "off"
       NGINX_ERROR_LOG_LEVEL: debug
       NGINX_BACKEND_HOST: php
-      NGINX_SERVER_ROOT: /var/www/html/web
+      NGINX_SERVER_ROOT: /var/www/html/docroot
     volumes:
       - ./code:/var/www/html
 # Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
@@ -75,16 +75,16 @@ services:
 #    environment:
 #      APACHE_LOG_LEVEL: debug
 #      APACHE_BACKEND_HOST: php
-#      APACHE_SERVER_ROOT: /var/www/html/web
+#      APACHE_SERVER_ROOT: /var/www/html/docroot
 #    volumes:
-#      - codebase:/var/www/html
+#      - ./code:/var/www/html
 ## Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
 ##      - codebase:/var/www/html:cached # User-guided caching
 ##      - docker-sync:/var/www/html # Docker-sync
 #    labels:
 #      - 'traefik.backend=apache'
 #      - 'traefik.port=80'
-#      - 'traefik.frontend.rule=Host:drupal.docker.localhost'
+##      - 'traefik.frontend.rule=Host:drupal.docker.localhost'
 
   varnish:
     image: wodby/drupal-varnish:4.1-2.1.2
@@ -97,7 +97,7 @@ services:
     labels:
       - 'traefik.backend=hotairqa_varnish_1'
       - 'traefik.port=6081'
-      - 'traefik.frontend.rule=Host:qa-hot-air.qa3.tothenew.net'
+      - 'traefik.frontend.rule=Host:au-hotair.qa3.tothenew.net,cn-hotair.qa3.tothenew.net,kr-hotair.qa3.tothenew.net,jp-hotair.qa3.tothenew.net,de-hotair.qa3.tothenew.net'
 
   redis:
     image: wodby/redis:3.2-2.1.2
@@ -111,18 +111,18 @@ services:
 #      - 'traefik.port=9000'
 #      - 'traefik.frontend.rule=Host:adminer.drupal.docker.localhost'
 
-#  pma:
-#    image: phpmyadmin/phpmyadmin
-#    environment:
-#      PMA_HOST: mariadb
-#      PMA_USER: drupal
-#      PMA_PASSWORD: drupal
-#      PHP_UPLOAD_MAX_FILESIZE: 1G
-#      PHP_MAX_INPUT_VARS: 1G
-#    labels:
-#      - 'traefik.backend=pma'
-#      - 'traefik.port=80'
-#      - 'traefik.frontend.rule=Host:pma.drupal.docker.localhost'
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mariadb
+#      PMA_USER: root
+#      PMA_PASSWORD: password
+      PHP_UPLOAD_MAX_FILESIZE: 1G
+      PHP_MAX_INPUT_VARS: 1G
+    labels:
+      - 'traefik.backend=hotairqa_pma_1'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:pma-hotair.qa3.tothenew.net'
 
 #  solr:
 ## wodby/drupal-solr:[DRUPAL_VERSION]-[SOLR_VERSION]-[STABILITY_TAG].
